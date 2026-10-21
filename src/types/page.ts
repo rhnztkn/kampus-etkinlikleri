@@ -1,0 +1,1 @@
+export type SayfaAdi = 'anasayfa' | 'etkinlikler' | 'ekle' | 'detay' | 'guncelle';
