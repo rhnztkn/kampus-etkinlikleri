@@ -67,7 +67,10 @@ export default function App() {
   if (aktifSayfa === 'anasayfa') { baslik = "Kampüs Etkinlikleri"; aciklama = "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin."; }
   else if (aktifSayfa === 'etkinlikler') { baslik = "Tüm Etkinlikler"; aciklama = "Ekim ayında kampüste düzenlenen etkinlikler."; }
   else if (aktifSayfa === 'ekle') { baslik = "Etkinlik Ekle"; }
-  else if (aktifSayfa === 'detay') { baslik = "Etkinlik Detayı"; }
+  else if (aktifSayfa === 'detay') { 
+    // BURASI DEĞİŞTİ: Eğer seçili etkinlik varsa onun adını, yoksa standart yazıyı gösterir
+    baslik = seciliEtkinlik ? seciliEtkinlik.baslik : "Etkinlik Detayı"; 
+  }
   else if (aktifSayfa === 'guncelle') { baslik = "Etkinliği Güncelle"; }
 
   return (
