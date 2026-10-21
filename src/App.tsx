@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 import Navigation from './components/layout/Navigation';
-import EtkinlikListesi from './components/events/EtkinlikListesi';
-import EtkinlikFiltresi from './components/events/EtkinlikFiltresi';
-import EtkinlikDetay from './components/events/EtkinlikDetay';
-import EtkinlikFormu from './components/forms/EtkinlikFormu';
+import EtkinlikListesi from './components/events/EventList';
+import EtkinlikFiltresi from './components/events/EventFilter';
+import EtkinlikDetay from './components/events/EventDetail';
+import EtkinlikFormu from './components/forms/EventForm';
 import type { Etkinlik } from './types/etkinlik';
 import type { SayfaAdi } from './types/page';
 
@@ -103,7 +103,7 @@ export default function App() {
         {aktifSayfa === 'ekle' && (
           <div style={{ maxWidth: '600px' }}>
             <p style={{ color: '#555', marginBottom: '30px' }}>Bu sprintte form sadece görünüm; kayıt yapılmaz.</p>
-            <EtkinlikFormu onSubmit={(e) => { e.preventDefault(); window.scrollTo(0,0); }} butonMetni="Kaydet" />
+            <EtkinlikFormu onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); window.scrollTo(0,0); }} butonMetni="Kaydet" />
           </div>
         )}
 

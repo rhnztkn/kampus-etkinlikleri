@@ -1,10 +1,10 @@
 import type { Etkinlik } from '../../types/etkinlik';
-import EtkinlikKarti from './EtkinlikKarti';
+import EtkinlikKarti from './EventCard'; // İçe aktarma yolu EventCard olarak düzeltildi
 
 interface EtkinlikListesiProps {
   etkinlikler: Etkinlik[];
   detaylaraGit: (etkinlik: Etkinlik) => void;
-  bosMesaji?: string; // Etkinlik yoksa gösterilecek mesaj
+  bosMesaji?: string;
 }
 
 export default function EtkinlikListesi({ etkinlikler, detaylaraGit, bosMesaji = "Gösterilecek etkinlik bulunamadı." }: EtkinlikListesiProps) {
