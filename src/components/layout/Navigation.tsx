@@ -1,29 +1,28 @@
-import type { SayfaAdi } from '../../types/page';
+import { NavLink } from "react-router-dom";
 
-interface NavigationProps {
-  aktifSayfa: SayfaAdi;
-  sayfayaGit: (hedef: SayfaAdi) => void;
-}
+const menu = [
+  { to: "/", label: "Ana Sayfa" },
+  { to: "/events", label: "Etkinlikler" },
+  { to: "/admin", label: "Yönetim" },
+  { to: "/login", label: "Giriş" },
+];
 
-// App.tsx'ten buraya taşıdık
-const sekmeStili = (aktif: boolean) => ({
-  background: aktif ? 'white' : 'transparent',
-  color: aktif ? '#1a933d' : 'white',
-  border: 'none',
-  padding: '12px 24px',
-  fontSize: '16px',
-  fontWeight: 'bold',
-  borderTopLeftRadius: '8px',
-  borderTopRightRadius: '8px',
-  cursor: 'pointer'
-});
-
-export default function Navigation({ aktifSayfa, sayfayaGit }: NavigationProps) {
+// NavLink açık sayfaya kendisi aria-current="page" ekler; CSS onu boyar.
+// end: onsuz "/" her adresle eşleşir, Ana Sayfa hep aktif görünür.
+function Navigation() {
   return (
-    <div style={{ display: 'flex', gap: '5px' }}>
-      <button onClick={() => sayfayaGit('anasayfa')} style={sekmeStili(aktifSayfa === 'anasayfa')}>Ana Sayfa</button>
-      <button onClick={() => sayfayaGit('etkinlikler')} style={sekmeStili(aktifSayfa === 'etkinlikler')}>Etkinlikler</button>
-      <button onClick={() => sayfayaGit('ekle')} style={sekmeStili(aktifSayfa === 'ekle')}>Ekle</button>
-    </div>
+    <nav className="site-nav" aria-label="Ana menü">
+      <ul>
+        {menu.map((item) => (
+          <li key={item.to}>
+            <NavLink to={item.to} end={item.to === "/"}>
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
+
+export default Navigation;

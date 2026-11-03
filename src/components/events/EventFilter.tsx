@@ -1,28 +1,41 @@
-interface EtkinlikFiltresiProps {
-  aramaMetni: string;
-  onAramaDegisti: (deger: string) => void;
-  seciliKategori: string;
-  onKategoriDegisti: (deger: string) => void;
+import type { Category } from "../../types/campus-event";
+
+interface Props {
+  searchText: string;
+  onSearchChange: (value: string) => void;
+  category: Category | "";
+  onCategoryChange: (value: Category | "") => void;
+  categories: Category[];
 }
 
-const inputStyle = { width: '100%', padding: '12px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' as const, fontSize: '14px' };
-
-export default function EtkinlikFiltresi({ aramaMetni, onAramaDegisti, seciliKategori, onKategoriDegisti }: EtkinlikFiltresiProps) {
+function EventFilter({ searchText, onSearchChange, category, onCategoryChange, categories }: Props) {
   return (
-    <div style={{ display: 'flex', gap: '20px', background: 'white', padding: '20px', borderRadius: '8px', border: '1px solid #ddd', marginBottom: '20px' }}>
-      <div style={{ flex: 2 }}>
-        <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', marginBottom: '8px', color: '#333' }}>Etkinlik ara</label>
-        <input type="text" placeholder="Örn. atölye, kariyer" value={aramaMetni} onChange={(e) => onAramaDegisti(e.target.value)} style={inputStyle} />
+    <div className="filtre">
+      <div className="alan">
+        <label htmlFor="arama">Etkinlik ara</label>
+        <input
+          id="arama"
+          type="search"
+          placeholder="Örn. atölye, kariyer"
+          value={searchText}
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
       </div>
-      <div style={{ flex: 1 }}>
-        <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', marginBottom: '8px', color: '#333' }}>Kategori</label>
-        <select value={seciliKategori} onChange={(e) => onKategoriDegisti(e.target.value)} style={inputStyle}>
-          <option value="Tümü">Tümü</option>
-          <option value="Seminer">Seminer</option>
-          <option value="Atölye">Atölye</option>
-          <option value="Söyleşi">Söyleşi</option>
+      <div className="alan">
+        <label htmlFor="kategori-filtre">Kategori</label>
+        <select
+          id="kategori-filtre"
+          value={category}
+          onChange={(e) => onCategoryChange(e.target.value as Category | "")}
+        >
+          <option value="">Tümü</option>
+          {categories.map((c) => (
+            <option key={c} value={c}>{c}</option>
+          ))}
         </select>
       </div>
     </div>
   );
 }
+
+export default EventFilter;

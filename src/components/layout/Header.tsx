@@ -1,13 +1,10 @@
-interface HeaderProps {
-  baslik: string;
-  aciklama?: string; // Soru işareti (?) bu prop'un isteğe bağlı olduğunu gösterir
-}
-
-export default function Header({ baslik, aciklama }: HeaderProps) {
+function Header() {
   return (
-    <div style={{ marginBottom: '30px' }}>
-      <h1 style={{ margin: '0 0 10px 0', fontSize: '32px' }}>{baslik}</h1>
-      {aciklama && <p style={{ margin: 0, fontSize: '16px' }}>{aciklama}</p>}
-    </div>
+    <header className="site-header">
+      <h1>Kampüs Etkinlikleri</h1>
+      <p>Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.</p>
+    </header>
   );
 }
+
+export default Header;

@@ -1,22 +1,23 @@
-import type { Etkinlik } from '../../types/etkinlik';
-import EtkinlikKarti from './EventCard'; // İçe aktarma yolu EventCard olarak düzeltildi
+import type { CampusEvent } from "../../types/campus-event";
+import EventCard from "./EventCard";
 
-interface EtkinlikListesiProps {
-  etkinlikler: Etkinlik[];
-  detaylaraGit: (etkinlik: Etkinlik) => void;
-  bosMesaji?: string;
+interface Props {
+  events: CampusEvent[];
+  emptyText?: string;
 }
 
-export default function EtkinlikListesi({ etkinlikler, detaylaraGit, bosMesaji = "Gösterilecek etkinlik bulunamadı." }: EtkinlikListesiProps) {
-  if (etkinlikler.length === 0) {
-    return <p style={{ color: '#777', fontStyle: 'italic', marginBottom: '20px' }}>{bosMesaji}</p>;
+function EventList({ events, emptyText = "Gösterilecek etkinlik yok." }: Props) {
+  if (events.length === 0) {
+    return <p className="bos-mesaj">{emptyText}</p>;
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-      {etkinlikler.map(e => (
-        <EtkinlikKarti key={e.id} e={e} detaylaraGit={detaylaraGit} />
+    <div className="kart-listesi">
+      {events.map((event) => (
+        <EventCard key={event.id} event={event} />
       ))}
     </div>
   );
 }
+
+export default EventList;

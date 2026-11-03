@@ -1,32 +1,55 @@
-# React + TypeScript + Vite
+# Kampüs Etkinlikleri
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Fakültedeki seminer, atölye ve söyleşileri listeleyen React + TypeScript + Vite uygulaması.
+Sprint 6 ve vize teslimi: React Router, Context, controlled form, ekle / güncelle / sil.
 
-Currently, two official plugins are available:
+**Öğrenci:** Orhan Öztekin · 2416501017
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Canlı adres
 
-## React Compiler
+https://orhanoztekin-frontend.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kurulum
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Tarayıcıda `http://localhost:5173` adresini açın.
+
+## Route listesi
+
+| Adres | Sayfa |
+|---|---|
+| `/` | HomePage |
+| `/events` | EventsPage |
+| `/events/:id` | EventDetailPage |
+| `/login` | LoginPage |
+| `/register` | RegisterPage |
+| `/forgot-password` | ForgotPasswordPage |
+| `/admin` | AdminPage |
+| `/admin/new` | AddEventPage |
+| `/admin/:id/edit` | EditEventPage |
+| `*` | NotFoundPage |
+
+## Klasör yapısı
+
+```
+src/
+  components/
+    layout/   Header Navigation Footer
+    events/   EventCard EventList EventFilter EventDetail
+    forms/    EventForm
+  context/    EventsContext.tsx
+  pages/      HomePage EventsPage EventDetailPage
+              AdminPage AddEventPage EditEventPage
+              LoginPage RegisterPage ForgotPasswordPage
+              NotFoundPage
+  data/       events.ts
+  types/      campus-event.ts
+  utils/      filter-events format-date validate-event
+  App.tsx App.css index.css main.tsx
+```
+
+Veriler şimdilik tarayıcı belleğinde tutulur; sayfa yenilenince başlangıç listesine döner.
